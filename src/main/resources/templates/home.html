@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{js/actions.js}"></script>
+</head>
+<body>
+    <p th:text="'This is a Thymeleaf-View!'" />
+    <span th:text="${person.firstname}" />
+    <span th:text="${person.lastname}" />
+
+    <h1>Name</h1>
+    <form action="#" th:action="@{/}" th:object="${person}" method="post">
+        <p>Vorname: <input id="firstname" type="text" th:field="*{firstname}" /></p>
+        <p>Nachname: <input id="lastname" type="text" th:field="*{lastname}" /></p>
+        <p><input type="submit" value="Submit" th:onclick="showAlert()" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <p id="lorem">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+</body>
+</html>
