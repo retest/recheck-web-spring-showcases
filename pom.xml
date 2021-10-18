@@ -1,29 +1,73 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+
+	<groupId>de.retest</groupId>
+	<artifactId>recheck-web-spring-showcases</artifactId>
+	<version>0.1-SNAPSHOT</version>
+
+	<name>recheck-web-spring-showcases</name>
+	<description>Demo project for Spring Boot.</description>
+	<url>https://retest.de/recheck-web/</url>
+
+	<organization>
+		<name>retest @ UBS Hainer GmbH</name>
+		<url>https://retest.de/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>team</id>
+			<name>The retest developers</name>
+			<email>info@retest.de</email>
+			<url>https://github.com/orgs/retest/people</url>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>The contributors</name>
+			<url>https://github.com/retest/${project.artifactId}/graphs/contributors</url>
+		</contributor>
+	</contributors>
+
+	<licenses>
+		<license>
+			<name>GNU Affero General Public License (AGPL), Version 3</name>
+			<url>https://gnu.org/licenses/agpl-3.0.html</url>
+		</license>
+	</licenses>
+
 	<properties>
 		<java.version>11</java.version>
-
-		<recheck.version>1.12.0</recheck.version>
-		<recheck.web.version>1.12.0</recheck.web.version>
-		<recheck.extension.version>1.12.0</recheck.extension.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io/</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 		<dependency>
@@ -31,61 +75,45 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
-			<version>2.53.1</version>
-		</dependency>
-		<dependency>
-			<groupId>de.retest</groupId>
-			<artifactId>recheck</artifactId>
-			<version>${recheck.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>de.retest</groupId>
 			<artifactId>recheck-web</artifactId>
-			<version>${recheck.web.version}</version>
+			<version>1.12.0</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.retest</groupId>
-			<artifactId>recheck-junit-jupiter-extension</artifactId>
-			<version>${recheck.extension.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.7.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.141.59</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>3.0.0</version>
 		</dependency>
 
+		<!-- START workaround old jaxb package name -->
 		<dependency>
-			<groupId>org.aeonbits.owner</groupId>
-			<artifactId>owner-java8</artifactId>
-			<version>1.0.12</version>
+			<!-- provide xml api with jakarta package name -->
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>[3,3.99)</version><!--$NO-MVN-MAN-VER$ -->
+			<!-- depends on com.sun.activation:jakarta.activation > 2.0 (package jakarta.activation) -->
 		</dependency>
+		<dependency>
+			<!-- version with old package name exist, so we need to enforce a lower version bound -->
+			<groupId>com.sun.activation</groupId>
+			<artifactId>jakarta.activation</artifactId>
+			<version>[2,2.99)</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<dependency>
+			<!-- provide xml api with javax package name -->
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>[2.3,2.99)</version><!--$NO-MVN-MAN-VER$ -->
+			<!-- depends on javax.activation:javax.activation-api (package javax.activation) -->
+		</dependency>
+		<!-- END workaround old jaxb package name -->
+
+		<dependency>
+			<!-- workaround for legacy mail dependency in spring-boot-starter-oauth2-client -->
+			<!-- only needed if spring-boot-starter-oauth2-client < v2.4.12 or < v2.5.5 is used -->
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>2.0.1</version><!--$NO-MVN-MAN-VER$ -->
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -97,4 +125,39 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>coverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.7</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<scm>
+		<connection>scm:git:https://${git.repo.host}/${git.repo.path}.git</connection>
+		<developerConnection>scm:git:ssh://git@${git.repo.host}/${git.repo.path}.git</developerConnection>
+		<url>https://${git.repo.host}/${git.repo.path}/</url>
+		<tag>HEAD</tag>
+	</scm>
 </project>
