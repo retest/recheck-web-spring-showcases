@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<reTestXmlDataContainer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" reTestVersion="1.13.0-SNAPSHOT" dataType="de.retest.recheck.ui.descriptors.SutState" dataTypeVersion="4">
+<reTestXmlDataContainer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" reTestVersion="1.12.0-beta.2" dataType="de.retest.recheck.ui.descriptors.SutState" dataTypeVersion="4">
 	<data xsi:type="sutState">
 		<descriptors retestId="html" screenId="1" screen="Home" title="Home">
 			<identifyingAttributes>
@@ -410,7 +410,7 @@
 										<x>66</x>
 										<y>0</y>
 										<height>0</height>
-										<width>-999</width>
+										<width>-1007</width>
 									</attribute>
 									<attribute key="path" xsi:type="pathAttribute">html[1]/body[1]/form[1]/p[1]/input[1]</attribute>
 									<attribute key="suffix" xsi:type="suffixAttribute">1</attribute>
@@ -600,7 +600,7 @@
 										<x>77</x>
 										<y>0</y>
 										<height>0</height>
-										<width>-999</width>
+										<width>-1007</width>
 									</attribute>
 									<attribute key="path" xsi:type="pathAttribute">html[1]/body[1]/form[1]/p[2]/input[1]</attribute>
 									<attribute key="suffix" xsi:type="suffixAttribute">1</attribute>
@@ -1101,7 +1101,6 @@
 			</entry>
 			<entry>
 				<key>os.arch</key>
-				<value></value>
 			</entry>
 			<entry>
 				<key>check.type</key>
@@ -1129,7 +1128,6 @@
 			</entry>
 			<entry>
 				<key>os.version</key>
-				<value></value>
 			</entry>
 			<entry>
 				<key>browser.name</key>
